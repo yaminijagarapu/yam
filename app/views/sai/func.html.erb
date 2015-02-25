@@ -1,0 +1,118 @@
+<html>
+<head>
+  <title>yam</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  
+  <%= csrf_meta_tags %>
+
+<style>
+table, th, td {
+   color:black;
+    border: 1px solid blue;
+	 font-family: monospace;
+        }
+	body {
+	    font-family: arial;
+		 color: black;
+	     font-size: 180%;
+  		 background-color: #D8D8D8;
+		 }
+	button {
+	       
+			font-family: cursive;
+			font-size: 100%;
+			
+			}
+		
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<script>
+function locate(latitude,longitude){
+//console.log(latitude+" "+longitude)
+$("#locationimg").attr('src',"https://maps.googleapis.com/maps/api/staticmap?center="+latitude+","+longitude+"&zoom=16&size=600x300&maptype=roadmap&markers=color:pink%7Clabel:Y%7C"+latitude+","+longitude);
+$("#locationimg").show();
+}
+$(document).ready(function(){
+$("#locationimg").hide();
+$("#shoestab").hide();
+    $("button").click(function(){
+	        $.get("nike/shoe", function(data)
+				 
+		{
+		  console.log(data);
+       $("#shoestab").show();
+		 
+		/*
+		        str1 ="";
+		         for (var x in data){
+				 str1+="<tr>";
+				 str1 +=  "<td>" + x.name + "</td>";
+				 str1+="<td>" + x.price + "</td>";
+				 str1 += "<td>" + data[i].shop + "</td>";
+				 str1+="</tr>";
+				 }
+				 $("#shoestab").html(str1);
+			*/	 
+                var locate="";
+				for (var i = 0; i < 3; i++)
+	             {     
+				      console.log(data[i].title);
+                      var row = $("<tr/>");
+				      $("#shoestab").append(row);
+					  
+					  row.append($("<td>" + data[i].title + "</td>"));
+					  row.append($("<td>" + data[i].director + "</td>"));
+					  row.append($("<td>" + data[i].desc + "</td>"));
+					  row.append($("<td>" + data[i].rating + "</td>"));
+					  row.append($("<td>" + data[i].year + "</td>"));
+                      row.append($("<td>" +   data[i].theatre + "</td>")); 	
+                      	locate = "<td><button onclick=locate('"+data[i].latitude+"','"+data[i].longitude+"')> LOCATE </button> </td>";				  
+                      //row.append($("<td> <button onclick=\'locate(\""+data[i].latitude+"\",\'+data[i].longitude+"\')>Locate </button>")) ;              
+				     row.append($(locate)) ;
+				}
+				 
+         
+	 
+		   	
+			
+		});
+		});
+		});
+                         
+                      
+
+</script>
+</head>
+
+<body>
+<h4> Here's a list of movies and their descriptions in brief.</h4>
+ 
+<button> VIEW MOVIES!!  </button>
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+<table id="shoestab" bgcolor="#F5A9A9" align="center" cellpadding="30">
+<tr>
+<th> <b/> TITLE </th>
+<th><b/> DIRECTOR </th>
+<th> <b/> DESCRIPTION </th>
+<th> <b/> RATING </th>
+<th> <b/> YEAR </th>
+<th><b/>THEATRE </th> 
+<th><b/>LOCATION </th> 
+</tr>
+
+
+</table>
+<img id="locationimg" src="">
+
+
+</body>
+</html>
+
+			 
