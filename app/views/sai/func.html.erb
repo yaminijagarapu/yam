@@ -13,7 +13,7 @@ table, th, td {
         }
 	body {
 	    font-family: arial;
-		 color: black;
+		 color: blue;
 	     font-size: 180%;
   		 background-color: #D8D8D8;
 		 }
@@ -30,7 +30,6 @@ table, th, td {
 
 <script>
 function locate(latitude,longitude){
-//console.log(latitude+" "+longitude)
 $("#locationimg").attr('src',"https://maps.googleapis.com/maps/api/staticmap?center="+latitude+","+longitude+"&zoom=16&size=600x300&maptype=roadmap&markers=color:pink%7Clabel:Y%7C"+latitude+","+longitude);
 $("#locationimg").show();
 }
@@ -44,17 +43,7 @@ $("#shoestab").hide();
 		  console.log(data);
        $("#shoestab").show();
 		 
-		/*
-		        str1 ="";
-		         for (var x in data){
-				 str1+="<tr>";
-				 str1 +=  "<td>" + x.name + "</td>";
-				 str1+="<td>" + x.price + "</td>";
-				 str1 += "<td>" + data[i].shop + "</td>";
-				 str1+="</tr>";
-				 }
-				 $("#shoestab").html(str1);
-			*/	 
+	 
                 var locate="";
 				for (var i = 0; i < 3; i++)
 	             {     
@@ -69,7 +58,7 @@ $("#shoestab").hide();
 					  row.append($("<td>" + data[i].year + "</td>"));
                       row.append($("<td>" +   data[i].theatre + "</td>")); 	
                       	locate = "<td><button onclick=locate('"+data[i].latitude+"','"+data[i].longitude+"')> LOCATE </button> </td>";				  
-                      //row.append($("<td> <button onclick=\'locate(\""+data[i].latitude+"\",\'+data[i].longitude+"\')>Locate </button>")) ;              
+                            
 				     row.append($(locate)) ;
 				}
 				 
@@ -109,7 +98,7 @@ $("#shoestab").hide();
 
 
 </table>
-<img id="locationimg" src="">
+<img id="locationimg" >
 
 
 </body>
